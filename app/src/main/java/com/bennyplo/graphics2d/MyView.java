@@ -2,6 +2,7 @@ package com.bennyplo.graphics2d;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.view.View;
 
@@ -11,6 +12,7 @@ import android.view.View;
 
 public class MyView extends View {
     private Paint redPaint;
+    private Paint bluePaint;
 
 
     public MyView(Context context) {
@@ -20,6 +22,11 @@ public class MyView extends View {
         redPaint.setStyle(Paint.Style.STROKE);//stroke only no fill
         redPaint.setColor(0xffff0000);//color red
         redPaint.setStrokeWidth(5);//set the line stroke width to 5
+
+        bluePaint=new Paint(Paint.ANTI_ALIAS_FLAG);
+        bluePaint.setStyle(Paint.Style.STROKE);//stroke only no fill
+        bluePaint.setColor(Color.BLUE);//color red
+        bluePaint.setStrokeWidth(5);//set the line stroke width to 5
     }
 
 
@@ -28,5 +35,6 @@ public class MyView extends View {
         super.onDraw(canvas);
         //Add your drawing code here
         canvas.drawRect(10,30,200,200,redPaint);
+        canvas.drawCircle(300,300,250, bluePaint);
     }
 }
