@@ -24,11 +24,21 @@ public class MyView extends View {
     Path mlines = new Path();
 
     public void init() {
+
         points[0] = new Point(50, 300);
         points[1] = new Point(150, 400);
         points[2] = new Point(180, 340);
         points[3] = new Point(240, 420);
         points[4] = new Point(300, 200);
+
+        mlines = new Path();
+        mlines.moveTo(50,300);
+        mlines.lineTo(150,400);
+        mlines.lineTo(180,340);
+        mlines.lineTo(240,420);
+        mlines.lineTo(300,200);
+
+        mlines.close();
 
 
     }
@@ -53,19 +63,28 @@ public class MyView extends View {
     public void updatePath(Point[] newPoints){
         mlines.reset();
         mlines.moveTo(newPoints[0].x,newPoints[0].y);
+
+        for (int i = 1; i < newPoints.length; i++)
+            mlines.lineTo(newPoints[i].x, newPoints[i].y);
+
         mlines.close();
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
+
+
         //Add your drawing code here
         //canvas.drawRect(500,500,700,700,redPaint);
         //canvas.drawCircle(300,300,250, bluePaint);
         //canvas.drawCircle(600,600,185, bluePaint);
-        canvas.drawPath(mlines, redPaint);
-        Point[] npoints = Transformations.translate(points, 20, 40);
-        updatePath(npoints);
-        canvas.drawPath(mlines, bluePaint);
+
+
+         canvas.drawPath(mlines, redPaint);
+         Point[] npoints = Transformations.translate(points, 20, 40);
+         updatePath(npoints);
+         canvas.drawPath(mlines, bluePaint);
+
     }
 }
